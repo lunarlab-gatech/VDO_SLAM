@@ -15,8 +15,8 @@
 #include "Frame.h"
 #include "Converter.h"
 #include <thread>
-#include<time.h>
-#include<chrono>
+#include <time.h>
+#include <chrono>
 
 namespace VDO_SLAM
 {
@@ -309,6 +309,28 @@ void Frame::UpdatePoseMatrices()
     mRwc = mRcw.t();
     mtcw = mTcw.rowRange(0,3).col(3);
     mOw = -mRcw.t()*mtcw;
+}
+
+vector<apriltag_detection_t> Frame::ExtractAprilTags(const cv::Mat img) {
+
+    vector<apriltag_detection_t> current_tags;
+
+    apriltag_detector_t *td = apriltag_detector_create();
+    apriltag_family_t *tf = tagStandard36h11_create();
+    apriltag_detector_add_family(td, tf);
+    zarray_t *detections = apriltag_detector_detect(td, img);
+
+    for (int i = 0; i < zarray_size(detections); i++) {
+        apriltag_detection_t *det;
+        zarray_get(detections, i, &det);
+        current_tags.push_back(det);
+    }
+
+    apriltag_detections_destroy(detections);
+    tagStandard41h12_destroy(tf);
+    apriltag_detector_destroy(td);
+
+    return current_tags;
 }
 
 vector<size_t> Frame::GetFeaturesInArea(const float &x, const float  &y, const float  &r, const int minLevel, const int maxLevel) const

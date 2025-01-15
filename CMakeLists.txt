@@ -77,6 +77,7 @@ ${CSPARSE_LIBRARY}
 #${PROJECT_SOURCE_DIR}/dependencies/g2o/lib/libg2o.dylib
 # for linux (ubuntu)
 ${PROJECT_SOURCE_DIR}/dependencies/g2o/lib/libg2o.so
+${PROJECT_SOURCE_DIR}/dependencies/apriltag
 )
 
 
