@@ -12,6 +12,10 @@
 #include<vector>
 
 #include "ORBextractor.h"
+#include "apriltag.h"
+/*
+Include apriltag header files here
+*/
 
 #include <opencv2/opencv.hpp>
 
@@ -43,6 +47,9 @@ public:
 
     // Computes rotation, translation and camera center matrices from the camera pose.
     void UpdatePoseMatrices();
+
+    // Returns list of apriltag Frames in camera view
+    vector<apriltag_detection_t> ExtractAprilTags();
 
     // Returns the camera center.
     inline cv::Mat GetCameraCenter(){
