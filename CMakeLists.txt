@@ -30,23 +30,29 @@ endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 
+find_package(PkgConfig)
+pkg_search_module(apriltag REQUIRED apriltag)
+set(apriltag_INCLUDE_DIRS "${apriltag_INCLUDE_DIRS}/apriltag")
+link_directories(${apriltag_LIBDIR})
 
-find_package(OpenCV 3.0 QUIET)
-if(NOT OpenCV_FOUND)
-   find_package(OpenCV 2.4.3 QUIET)
-   if(NOT OpenCV_FOUND)
-      message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
-   endif()
-endif()
+
+#find_package(OpenCV 3.0 QUIET)
+#if(NOT OpenCV_FOUND)
+#   find_package(OpenCV 2.4.3 QUIET)
+#   if(NOT OpenCV_FOUND)
+#      message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
+#   endif()
+#endif()
 
 find_package(Eigen3 3.1.0 REQUIRED)
-find_package(CSparse REQUIRED)
+#find_package(CSparse REQUIRED)
 
 include_directories(
 ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include
 ${EIGEN3_INCLUDE_DIR}
-${CSPARSE_INCLUDE_DIR}
+#${CSPARSE_INCLUDE_DIR}
+${apriltag_INCLUDE_DIRS}
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
@@ -70,9 +76,9 @@ src/cvplot/internal.h
 
 target_link_libraries(
 ${PROJECT_NAME}
-${OpenCV_LIBS}
+#${OpenCV_LIBS}
 ${EIGEN3_LIBS}
-${CSPARSE_LIBRARY}
+#${CSPARSE_LIBRARY}
 # for mac os (default)
 #${PROJECT_SOURCE_DIR}/dependencies/g2o/lib/libg2o.dylib
 # for linux (ubuntu)
