@@ -1,9 +1,9 @@
 [submodule "dependencies/apriltag"]
 	path = dependencies/apriltag
 	url = https://github.com/AprilRobotics/apriltag.git
-[submodule "dependencies/eigen3"]
-	path = dependencies/eigen3
-	url = https://github.com/OPM/eigen3.git
 [submodule "dependencies/CSparse"]
 	path = dependencies/CSparse
 	url = https://github.com/ibayer/CSparse.git
+[submodule "dependencies/eigen3"]
+	path = dependencies/eigen3
+	url = https://github.com/OPM/eigen3.git
