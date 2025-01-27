@@ -121,9 +121,11 @@ For evaluation purpose, ground truth data of camera pose and object pose are als
 
 ## Input Data Pre-processing
 
-1. The input of segmentation mask is saved as matrix, same size as image, in .txt file. Each element of the matrix is integer, with 0 stands for background, and 1,2,...,n stands for different instance label. Note that, to easily compare with ground truth object motion in KITTI dataset, we align the estimated mask label with the ground truth label. The .txt file generation (from .mask) and alignment code is in [tools](https://github.com/halajun/VDO_SLAM/blob/master/tools) folder.
+1. The input of segmentation mask is saved as matrix, same size and dimensionality as image, in .txt file. For example, row in image corresponds to row in .txt file, etc. Each element of the matrix is integer, with 0 stands for background, and 1,2,...,n stands for different instance label. Note that, to easily compare with ground truth object motion in KITTI dataset, we align the estimated mask label with the ground truth label. The .txt file generation (from .mask) and alignment code is in [tools](https://github.com/halajun/VDO_SLAM/blob/master/tools) folder.
 
 2. The input of optical flow is the standard .flo file that can be read and processed directly using OpenCV.
+
+3. The Depth folder doesn't necessarily contain depth (it could contain depth or disparity). For example, demo-kitti contains disparity values, which are converted into depth values in Tracking::GrabImageRGBD(). The dataset settings in VDO-SLAM determine how the values are read.
 
 ## Ground Truth Input for Evaluation
 

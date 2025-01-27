@@ -87,6 +87,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/example)
 add_executable(vdo_slam example/vdo_slam.cc)
 target_link_libraries(vdo_slam ${PROJECT_NAME})
 
+add_executable(irpf_slam example/irpf_slam.cc)
+target_link_libraries(irpf_slam ${PROJECT_NAME})
+
 # ========================= DOWNLOAD GOOGLE TEST =========================
 
 # Download and unpack googletest at configure time

@@ -68,6 +68,9 @@ RUN apt install libeigen3-dev
 # install CSparse
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libsuitesparse-dev
 
+# Install gnuplot
+RUN apt install gnuplot -y
+
 COPY . .
 
 # Build the Library
